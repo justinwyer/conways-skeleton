@@ -1,0 +1,5 @@
+<table cellspacing="0" cellpadding="0">
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let column of row" [ngClass]="{'black': column}"></td>
+  </tr>
+</table>
