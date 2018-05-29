@@ -1,5 +1,5 @@
 <table cellspacing="0" cellpadding="0">
-  <tr *ngFor="let row of rows">
+  <tr *ngFor="let row of rows | async">
     <td *ngFor="let column of row" [ngClass]="{'black': column}"></td>
   </tr>
 </table>

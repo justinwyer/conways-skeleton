@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DisplayService} from './display.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-display',
@@ -7,7 +8,7 @@ import {DisplayService} from './display.service';
   styleUrls: ['./display.component.css']
 })
 export class DisplayComponent implements OnInit {
-  rows: boolean[][];
+  rows: Observable<boolean[][]>;
 
   constructor(private displayService: DisplayService) {
     this.rows = this.displayService.grid();

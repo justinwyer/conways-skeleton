@@ -1,8 +1,66 @@
 import {Game} from './game';
 
-describe('A game', () => {
-  it('should have a size', () => {
-    expect(new Game(5, 5).size()).toBe(25, 'size should be 25 for a 5 by 5 game');
-    expect(new Game(6, 6).size()).toBe(36, 'size should be 36 for a 6 by 6 game');
+
+
+describe('A rule', () => {
+  it('any living cell with two or less living neighbours die', () => {
+    const game = new Game([
+      [false, false, false, false, false],
+      [false, false, false, false, false],
+      [false, false, true, false, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]]);
+    expect(game.NextGen()[2][2]).toBe(false, 'Should be dead');
+
+
+  });
+});
+
+
+describe('A rule', () => {
+  it('any living cell with two or three living neighbours lives on to the next gen', () => {
+    const game = new Game([
+      [false, false, false, false, false],
+      [false, false, true, false, false],
+      [false, false, true, true, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]]);
+    expect(game.NextGen()[2][2]).toBe(true, 'lives on');
+
+
+  });
+});
+
+
+
+describe('A rule', () => {
+  it('any living cell with three or more live neighbours die of over population', () => {
+    const game = new Game([
+      [false, false, false, false, false],
+      [false, true, true, true, false],
+      [false, true, true, true, false],
+      [false, false, false, false, false],
+      [false, false, false, false, false]]);
+    expect(game.NextGen()[2][2]).toBe(false, 'dies');
+
+
+  });
+});
+
+
+
+
+describe('A rule', () => {
+  it('any dead cell with exactly 3 live neighbours comes alive', () => {
+    const game = new Game([
+      [false, false, false, false, false],
+      [false, true, false, false, false],
+      [false, true, false, false, false],
+      [false, false, false, true, false],
+      [false, false, false, false, false]]);
+    expect(game.NextGen()[2][2]).toBe(true, 'alive');
+
+
+
   });
 });
